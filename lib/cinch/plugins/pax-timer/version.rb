@@ -1,6 +1,6 @@
 module Cinch
-  module Pax
-    module Timer
+  module Plugins
+    class PaxTimer
       VERSION = "0.0.1"
     end
   end

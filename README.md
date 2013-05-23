@@ -1,6 +1,6 @@
 # Cinch::Pax::Timer
 
-TODO: Write a gem description
+Cinch Plugin to track th time till PAX.
 
 ## Installation
 
@@ -15,10 +15,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cinch-pax-timer
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 

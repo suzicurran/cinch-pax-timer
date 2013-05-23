@@ -1,9 +1,2 @@
-require "cinch-pax-timer/version"
-
-module Cinch
-  module Pax
-    module Timer
-      # Your code goes here...
-    end
-  end
-end
+require 'cinch/plugins/pax-timer/version'
+require 'cinch/plugins/pax-timer/pax-timer'
