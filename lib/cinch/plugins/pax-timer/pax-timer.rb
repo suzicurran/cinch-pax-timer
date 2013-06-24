@@ -1,5 +1,6 @@
 require 'time-lord'
 require 'cinch-cooldown'
+require 'cinch-toolbox'
 
 module Cinch::Plugins
   class PaxTimer
@@ -37,7 +38,9 @@ module Cinch::Plugins
         message = "#{@pax[:name]} is "
         message << 'approximately ' if @pax[:estimated]
 
-        message << TimeLord::Period.new(@pax[:date], Time.now).to_words
+        # Uncomment this once we can specify granularity in Time Lord.
+        # message << TimeLord::Period.new(@pax[:date], Time.now).to_words
+        message << "#{Cinch::Toolbox.time_format(@pax[:date] - Time.now, [:days])} from now"
 
         message << " (No official date, yet)" if @pax[:estimated]
         return message
