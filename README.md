@@ -1,6 +1,10 @@
-# Cinch::Pax::Timer
+# Cinch::Plugins::PaxTimer
 
-Cinch Plugin to track th time till PAX.
+Cinch Plugin to track the time till PAX.
+
+I will eventually try to expand this into an event agnostic EventTimer
+plugin, but issues with how cince scopes config values with plugins are
+slowing down that effort.
 
 ## Installation
 

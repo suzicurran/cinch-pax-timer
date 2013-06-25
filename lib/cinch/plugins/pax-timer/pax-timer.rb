@@ -1,27 +1,29 @@
+require 'cinch'
 require 'time-lord'
-require 'cinch-cooldown'
 require 'cinch-toolbox'
+require 'cinch-cooldown'
 
 module Cinch::Plugins
   class PaxTimer
     include Cinch::Plugin
+
+    PAXES = [ :east, :prime, :aus ]
 
     enforce_cooldown
 
     self.help = "Use .pax for the next pax or .east, .prime, or .aus for the time to a specific pax."
 
     match /(time|pax|timetillpax)\z/, method: :next_pax
-    match /east|paxeast/, method: :next_east
-    match /prime|paxprime/, method: :next_prime
-    match /aus|paxaus/, method: :next_aus
 
     def next_pax(m)
       m.reply get_next_pax
     end
 
-    ['east', 'aus', 'prime'].each do |pax_type|
-      define_method "next_#{pax_type}" do |m|
-        m.reply get_next_pax(pax_type)
+    PAXES.each do |pax|
+      match /#{pax}|pax#{pax}/, :method => "next_#{pax}"
+
+      define_method "next_#{pax}" do |m|
+        m.reply get_next_pax(pax)
       end
     end
 
