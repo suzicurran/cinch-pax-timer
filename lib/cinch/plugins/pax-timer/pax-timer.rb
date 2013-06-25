@@ -7,8 +7,6 @@ module Cinch::Plugins
   class PaxTimer
     include Cinch::Plugin
 
-    PAXES = [ :east, :prime, :aus ]
-
     enforce_cooldown
 
     self.help = "Use .pax for the next pax or .east, .prime, or .aus for the time to a specific pax."
@@ -19,7 +17,22 @@ module Cinch::Plugins
       m.reply get_next_pax
     end
 
-    PAXES.each do |pax|
+    PAXES = [
+      { :type       => 'prime',
+        :name       => 'PAX Prime',
+        :date       => Time.parse('2013-08-30 08:00:00 -08:00'),
+        :estimated  => false },
+      { :type       => 'aus',
+        :name       => 'PAX Australia',
+        :date       => Time.parse('2013-07-19 08:00:00 -08:00'),
+        :estimated  => false },
+      { :type       => 'east',
+        :name       => 'PAX East',
+        :date       => Time.parse('2014-04-11 08:00:00 -08:00'),
+        :estimated  => false }
+    ]
+
+    PAXES.map{ |p| p[:type] }.each do |pax|
       match /#{pax}|pax#{pax}/, :method => "next_#{pax}"
 
       define_method "next_#{pax}" do |m|
@@ -49,14 +62,13 @@ module Cinch::Plugins
     end
 
     def get_next_pax_for(type)
-      @filename = File.join(File.dirname(__FILE__), "../../../../config/pax.yml")
-      if File::exist?(@filename)
-        paxes = YAML::load(File.open(@filename))
-        paxes.delete_if { |pax| pax[:date] - Time.now < 0 }
-        paxes.delete_if { |pax| pax[:type] != type } unless type.nil?
-        paxes.sort! { |a,b| b[:date] <=> a[:date] }
-        return paxes.last
-      end
+      paxes = PAXES.dup
+
+      paxes.delete_if { |pax| pax[:date] - Time.now < 0 }
+      paxes.delete_if { |pax| pax[:type] != type } unless type.nil?
+      paxes.sort! { |a,b| b[:date] <=> a[:date] }
+
+      return paxes.last
     end
   end
 end
