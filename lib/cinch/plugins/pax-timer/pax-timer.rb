@@ -13,7 +13,7 @@ module Cinch::Plugins
 
     self.help = "Use .pax for the next pax or .east, .prime, or .aus for the time to a specific pax."
 
-    match /(time|pax|timetillpax)\z/, method: :next_pax
+    match /pax\z/, method: :next_pax
 
     def next_pax(m)
       m.reply get_next_pax
@@ -23,7 +23,8 @@ module Cinch::Plugins
       match /#{pax}|pax#{pax}/, :method => "next_#{pax}"
 
       define_method "next_#{pax}" do |m|
-        m.reply get_next_pax(pax)
+        debug "#{pax}"
+        m.reply get_next_pax(pax.to_s)
       end
     end
 
@@ -35,17 +36,21 @@ module Cinch::Plugins
         @paxes.delete_if { |pax| pax[:date] - Time.now < 0 }
         @paxes.delete_if { |pax| pax[:type] != type } unless type.nil?
         @paxes.sort! { |a,b| b[:date] <=> a[:date] }
-
         @pax = @paxes.pop
-        message = "#{@pax[:name]} is "
-        message << 'approximately ' if @pax[:estimated]
 
-        # Uncomment this once we can specify granularity in Time Lord.
-        # message << TimeLord::Period.new(@pax[:date], Time.now).to_words
-        message << "#{Cinch::Toolbox.time_format(@pax[:date] - Time.now, [:days])} from now"
+        if @pax.nil?
+          return 'I don\'t have info for the next one of those PAXes'
+        else
+          message = "#{@pax[:name]} is "
+          message << 'approximately ' if @pax[:estimated]
 
-        message << " (No official date, yet)" if @pax[:estimated]
-        return message
+          # Uncomment this once we can specify granularity in Time Lord.
+          # message << TimeLord::Period.new(@pax[:date], Time.now).to_words
+          message << "#{Cinch::Toolbox.time_format(@pax[:date] - Time.now, [:days])} from now"
+
+          message << " (No official date, yet)" if @pax[:estimated]
+          return message
+        end
       end
     end
   end

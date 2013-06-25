@@ -12,49 +12,53 @@ describe Cinch::Plugins::PaxTimer do
     # @plugin = Cinch::Plugins::PaxTimer.new
   end
 
-  it 'should return the next pax' do
-    msg = make_message(@bot, '!pax')
+  describe :pax do
+    it 'should return the next pax' do
+      msg = make_message(@bot, '!pax')
+      get_replies(msg).first.
+        should match(/PAX.+is \d+ days from now/)
+    end
+
+    it 'should return nothing if there are arguments' do
+      msg = make_message(@bot, '!pax fail')
+      get_replies(msg).first.
+        should be_nil
+    end
+  end
+
+  it 'should respond to .prime correctly' do
+    msg = make_message(@bot, '!prime')
     get_replies(msg).first.
-      should match(/PAX.+is \d+ days from now/)
+      should match(/PAX Prime is \d+ days from now/)
   end
 
-
-end
-
-=begin
-
-
-  # normal queries
-  it 'should return a definition of a term' do
-    @plugin.send(:get_def, 'computer').
-      should include("A computer is a general purpose device")
+  it 'should respond to .paxprime correctly' do
+    msg = make_message(@bot, '!paxprime')
+    get_replies(msg).first.
+      should match(/PAX Prime is \d+ days from now/)
   end
 
-  it 'should not return multiple lined definitions' do
-    @plugin.send(:get_def, 'Teenager').
-      should_not include("\n")
+  it 'should respond to .east correctly' do
+    msg = make_message(@bot, '!east')
+    get_replies(msg).first.
+      should match(/PAX East is \d+ days from now/)
   end
 
-  it 'should not return definitions that are longer than 250 chars' do
-    @plugin.send(:get_def, 'Teenager').length.
-      should == 334
+  it 'should respond to .paxeast correctly' do
+    msg = make_message(@bot, '!paxeast')
+    get_replies(msg).first.
+      should match(/PAX East is \d+ days from now/)
   end
 
-  # Not found
-  it 'should return an error message when a term is not found' do
-    @plugin.send(:get_def, 'dasdafasfasfasfasafsdfsdfsadf').
-      should include("I couldn't find anything for that search, sorry!")
+  it 'should respond to .aus correctly' do
+    msg = make_message(@bot, '!aus')
+    get_replies(msg).first.
+      should match(/PAX Australia is \d+ days from now/)
   end
 
-  it 'should provide suggestions if one is listed on the page' do
-    @plugin.send(:get_def, 'smegama').
-      should include("I couldn't find anything for that search, did you mean 'smegma'?")
-  end
-
-  # disambiguation
-  it 'should return helful information when a disambuation page' do
-    @plugin.send(:get_def, 'hipster').
-      should include('is too vague and lead to a disambiguation page')
+  it 'should respond to .paxaus correctly' do
+    msg = make_message(@bot, '!paxaus')
+    get_replies(msg).first.
+      should match(/PAX Australia is \d+ days from now/)
   end
 end
-=end
