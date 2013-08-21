@@ -15,7 +15,7 @@ describe Cinch::Plugins::PaxTimer do
   describe :pax do
     it 'should return the next pax' do
       msg = make_message(@bot, '!pax')
-      get_replies(msg).first.
+      get_replies(msg).first.text.
         should match(/PAX.+is (approximatly )?\d+ days from now/)
     end
 
@@ -28,37 +28,37 @@ describe Cinch::Plugins::PaxTimer do
 
   it 'should respond to .prime correctly' do
     msg = make_message(@bot, '!prime')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX Prime is.+days from now/)
   end
 
   it 'should respond to .paxprime correctly' do
     msg = make_message(@bot, '!paxprime')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX Prime is.+days from now/)
   end
 
   it 'should respond to .east correctly' do
     msg = make_message(@bot, '!east')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX East is.+days from now/)
   end
 
   it 'should respond to .paxeast correctly' do
     msg = make_message(@bot, '!paxeast')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX East is.+days from now/)
   end
 
   it 'should respond to .aus correctly' do
     msg = make_message(@bot, '!aus')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX Australia is.+days from now/)
   end
 
   it 'should respond to .paxaus correctly' do
     msg = make_message(@bot, '!paxaus')
-    get_replies(msg).first.
+    get_replies(msg).first.text.
       should match(/PAX Australia is.+days from now/)
   end
 end
