@@ -1,7 +1,7 @@
 require 'cinch'
 require 'time-lord'
-require 'cinch-toolbox'
-require 'cinch-cooldown'
+require 'cinch/toolbox'
+require 'cinch/cooldown'
 
 module Cinch::Plugins
   class PaxTimer
@@ -24,8 +24,8 @@ module Cinch::Plugins
         :estimated  => false },
       { :type       => 'aus',
         :name       => 'PAX Australia',
-        :date       => Time.parse('2013-07-19 08:00:00 -08:00'),
-        :estimated  => false },
+        :date       => Time.parse('2014-07-18 08:00:00 -08:00'),
+        :estimated  => true },
       { :type       => 'east',
         :name       => 'PAX East',
         :date       => Time.parse('2014-04-11 08:00:00 -08:00'),
