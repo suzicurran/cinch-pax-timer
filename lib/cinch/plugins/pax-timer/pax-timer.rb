@@ -20,15 +20,15 @@ module Cinch::Plugins
     PAXES = [
       { :type       => 'prime',
         :name       => 'PAX Prime',
-        :date       => Time.parse('2013-08-30 08:00:00 -08:00'),
-        :estimated  => false },
+        :date       => Time.parse('2014-08-30 08:00:00 -08:00'),
+        :estimated  => true },
       { :type       => 'aus',
         :name       => 'PAX Australia',
-        :date       => Time.parse('2014-07-18 08:00:00 -08:00'),
-        :estimated  => true },
+        :date       => Time.parse('2014-10-31 08:00:00 +11:00'),
+        :estimated  => false },
       { :type       => 'east',
         :name       => 'PAX East',
-        :date       => Time.parse('2014-04-11 08:00:00 -08:00'),
+        :date       => Time.parse('2014-04-11 08:00:00 -05:00'),
         :estimated  => false }
     ]
 
