@@ -35,7 +35,7 @@ module Cinch::Plugins
         estimated: false },
       { type:      'east',
         name:      'PAX East',
-        date:      Time.parse('2015-04-10 08:00:00 -05:00'),
+        date:      Time.parse('2015-03-06 08:00:00 -05:00'),
         estimated: true }
     ]
 
