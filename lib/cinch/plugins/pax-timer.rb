@@ -11,8 +11,8 @@ module Cinch::Plugins
 
     enforce_cooldown
 
-    self.help = 'Use .pax for the next pax or .east, .prime, or .aus for ' +
-                'the time to a specific pax.'
+    self.help = 'Use .pax for the next pax or .east, .prime, .south or .aus ' +
+                'for the time to a specific pax.'
 
     match /pax\z/, method: :next_pax
 
@@ -21,18 +21,22 @@ module Cinch::Plugins
     end
 
     PAXES = [
-      { type:      'prime',
-        name:      'PAX Prime',
-        date:      Time.parse('2014-08-30 08:00:00 -08:00'),
-        estimated: true },
       { type:      'aus',
         name:      'PAX Australia',
         date:      Time.parse('2014-10-31 08:00:00 +11:00'),
         estimated: false },
+      { type:      'prime',
+        name:      'PAX Prime',
+        date:      Time.parse('2014-08-29 08:00:00 -08:00'),
+        estimated: false },
+      { type:      'south',
+        name:      'PAX South',
+        date:      Time.parse('2015-01-23 08:00:00 -06:00'),
+        estimated: false },
       { type:      'east',
         name:      'PAX East',
-        date:      Time.parse('2014-04-11 08:00:00 -05:00'),
-        estimated: false }
+        date:      Time.parse('2015-04-10 08:00:00 -05:00'),
+        estimated: true }
     ]
 
     PAXES.map { |p| p[:type] }.each do |pax|
