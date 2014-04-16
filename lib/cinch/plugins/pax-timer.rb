@@ -36,7 +36,7 @@ module Cinch::Plugins
       { type:      'east',
         name:      'PAX East',
         date:      Time.parse('2015-03-06 08:00:00 -05:00'),
-        estimated: true }
+        estimated: false }
     ]
 
     PAXES.map { |p| p[:type] }.each do |pax|
