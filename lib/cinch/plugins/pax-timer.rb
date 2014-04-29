@@ -40,7 +40,7 @@ module Cinch::Plugins
     ]
 
     PAXES.map { |p| p[:type] }.each do |pax|
-      match /#{pax}|pax#{pax}/, method: "next_#{pax}"
+      match /(#{pax}|pax#{pax})\z/, method: "next_#{pax}"
 
       define_method "next_#{pax}" do |m|
         debug "#{pax}"
