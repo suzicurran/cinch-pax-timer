@@ -30,11 +30,11 @@ module Cinch
           estimated: false },
         { type:      'south',
           name:      'PAX South',
-          date:      Time.parse('2016-01-15 08:00:00 -06:00'),
-          estimated: true },
+          date:      Time.parse('2016-01-29 08:00:00 -06:00'),
+          estimated: false },
         { type:      'east',
           name:      'PAX East',
-          date:      Time.parse('2015-03-06 08:00:00 -05:00'),
+          date:      Time.parse('2016-04-22 08:00:00 -05:00'),
           estimated: false }
       ]
 
