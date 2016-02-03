@@ -9,7 +9,7 @@ module Cinch
     # Cinch Cooldown for PAX countdowns
     class PaxTimer
       include Cinch::Plugin
-      
+
       self.help = 'Use .pax for the next pax or .east, .prime, .south or ' \
                   '.aus for the time to a specific pax.'
 
@@ -18,25 +18,6 @@ module Cinch
       def next_pax(m)
         m.reply get_next_pax
       end
-
-      PAXES = [
-        { type:      'aus',
-          name:      'PAX Australia',
-          date:      Time.parse('2015-10-30 08:00:00 +11:00'),
-          estimated: false },
-        { type:      'prime',
-          name:      'PAX Prime',
-          date:      Time.parse('2015-08-28 08:00:00 -08:00'),
-          estimated: false },
-        { type:      'south',
-          name:      'PAX South',
-          date:      Time.parse('2016-01-29 08:00:00 -06:00'),
-          estimated: false },
-        { type:      'east',
-          name:      'PAX East',
-          date:      Time.parse('2016-04-22 08:00:00 -05:00'),
-          estimated: false }
-      ]
 
       PAXES.map { |p| p[:type] }.each do |pax|
         match(/(#{pax}|pax#{pax})\z/, method: "next_#{pax}")
