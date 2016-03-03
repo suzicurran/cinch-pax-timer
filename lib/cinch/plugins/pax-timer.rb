@@ -10,7 +10,7 @@ module Cinch
     class PaxTimer
       include Cinch::Plugin
 
-      self.help = 'Use .pax for the next pax or .east, .prime, .south or ' \
+      self.help = 'Use .pax for the next pax or .east, .west, .south or ' \
                   '.aus for the time to a specific pax.'
 
       match(/pax\z/, method: :next_pax)
