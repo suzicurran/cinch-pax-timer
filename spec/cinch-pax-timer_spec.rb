@@ -28,13 +28,25 @@ describe Cinch::Plugins::PaxTimer do
   it 'should respond to .prime correctly' do
     msg = make_message(@bot, '!prime')
     msg = get_replies(msg).first
-    expect(msg.text).to match(/PAX Prime is.+days from now/)
+    expect(msg.text).to match(/PAX West is.+days from now/)
   end
 
   it 'should respond to .paxprime correctly' do
     msg = make_message(@bot, '!paxprime')
     msg = get_replies(msg).first
-    expect(msg.text).to match(/PAX Prime is.+days from now/)
+    expect(msg.text).to match(/PAX West is.+days from now/)
+  end
+  
+  it 'should respond to .west correctly' do
+    msg = make_message(@bot, '!west')
+    msg = get_replies(msg).first
+    expect(msg.text).to match(/PAX West is.+days from now/)
+  end
+
+  it 'should respond to .paxwest correctly' do
+    msg = make_message(@bot, '!paxwest')
+    msg = get_replies(msg).first
+    expect(msg.text).to match(/PAX West is.+days from now/)
   end
 
   it 'should respond to .east correctly' do
